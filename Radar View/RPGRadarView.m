@@ -79,6 +79,17 @@
         distanceBetweenStrokeInAngle = [self.distanceBetweenStrokes floatValue];
     CGPoint centerOfCircle = CGPointMake(self.bounds.size.width / 2.0, self.bounds.size.height / 2.0);
     CGFloat radiusOfCircle = self.bounds.size.width / 2.0; // Width and height should be same always!
+    CGFloat maxBrightestAlphaVal = MAX_BRIGHTNESS_ALPHA_FOR_A_STROKE;
+    if (self.maxAlphaBrightnessForThickestStroke)
+    {
+        maxBrightestAlphaVal = self.maxAlphaBrightnessForThickestStroke.floatValue;
+    }
+    CGFloat minBrightestAlphaVal = MIN_BRIGHTNESS_ALPHA_FOR_A_STROKE;
+    if (self.minAlphaBrightnessForThinneshStroke)
+    {
+        minBrightestAlphaVal = self.minAlphaBrightnessForThinneshStroke.floatValue;
+    }
+    CGFloat alphaStepVal = (maxBrightestAlphaVal - minBrightestAlphaVal) / numberOfThickStrokes; // Alpha delta per stroke!
     for (int i=0; i<numberOfThickStrokes; i++)
     {
         CGMutablePathRef strokePath = CGPathCreateMutable();
@@ -89,7 +100,8 @@
         CGFloat iY = centerOfCircle.y + radiusOfCircle * sin(DEGREES_TO_RADIANS(ithStrokeAngle));
         
         // Draw line
-        UIColor *lineColor = [UIColor colorWithRed:0.0 green:1.0 blue:0.7 alpha:0.1];
+        CGFloat iAlphaVal = (maxBrightestAlphaVal - alphaStepVal*i);
+        UIColor *lineColor = [UIColor colorWithRed:0.0 green:1.0 blue:0.7 alpha:iAlphaVal];
         CGContextSetStrokeColorWithColor(context, lineColor.CGColor);
         CGPathMoveToPoint(strokePath, nil, centerOfCircle.x, centerOfCircle.y);
         CGPathAddLineToPoint(strokePath, nil, iX, iY);

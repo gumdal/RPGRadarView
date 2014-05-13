@@ -14,6 +14,8 @@
 #define RPM_VALUE 30
 #define FRAME_RATE 36.0 // In FPS (Frames per second)
 #define DISTANCE_BW_STROKES_IN_ANGLE 0.075
+#define MAX_BRIGHTNESS_ALPHA_FOR_A_STROKE 0.15
+#define MIN_BRIGHTNESS_ALPHA_FOR_A_STROKE 0.0
 
 @interface RPGRadarView : UIView
 @property (nonatomic, strong) NSNumber *numberOfThickStrokes;
@@ -22,6 +24,8 @@
 @property (nonatomic, strong) NSNumber *radarRPM;
 @property (nonatomic, strong) NSNumber *frameRate;
 @property (nonatomic, strong) NSNumber *angleStep;
+@property (nonatomic, strong) NSNumber *maxAlphaBrightnessForThickestStroke;
+@property (nonatomic, strong) NSNumber *minAlphaBrightnessForThinneshStroke;
 
 -(void)startAnimating;
 -(void)stopAnimating;
