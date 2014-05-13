@@ -9,12 +9,12 @@
 #import <UIKit/UIKit.h>
 
 // Defaults:
-#define THICK_STROKES 512
+#define THICK_STROKES 256
 #define RADAR_COLOR [UIColor colorWithRed:0.0 green:1.0 blue:0.1 alpha:0.5]
 #define RPM_VALUE 30
 #define FRAME_RATE 36.0 // In FPS (Frames per second)
-#define DISTANCE_BW_STROKES_IN_ANGLE 0.075
-#define MAX_BRIGHTNESS_ALPHA_FOR_A_STROKE 0.15
+#define DISTANCE_BW_STROKES_IN_ANGLE 0.15
+#define MAX_BRIGHTNESS_ALPHA_FOR_A_STROKE 0.2
 #define MIN_BRIGHTNESS_ALPHA_FOR_A_STROKE 0.0
 
 @interface RPGRadarView : UIView
